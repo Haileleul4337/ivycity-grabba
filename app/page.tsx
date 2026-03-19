@@ -1,10 +1,13 @@
 "use client"
 
-import { Menu, Mail, ShieldCheck, Leaf, Star, Clock, MapPin, X } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { Menu, Mail, ShieldCheck, Leaf, Star, Clock, MapPin, X, PlayCircle } from 'lucide-react'
+import { useEffect, useMemo, useState } from 'react'
 
 export default function IvyCityGrabbaReplica() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [activeSlide, setActiveSlide] = useState(0)
+  const [ageVerified, setAgeVerified] = useState(false)
+  const [ageCheckReady, setAgeCheckReady] = useState(false)
 
   const products = useMemo(
     () => [
@@ -13,32 +16,48 @@ export default function IvyCityGrabbaReplica() {
         description:
           'Premium bottled grabba prepared for customers who value consistency, quality, and craftsmanship in every order.',
         image:
-          '/images/IVY CITY GRABBA BOTTLE FULL BOX.jpg',
+          'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?q=80&w=1200&auto=format&fit=crop',
       },
       {
         name: 'IVY CITY Grabba Bottled 5g - COMING SOON',
         description:
           'A compact premium format for customers looking for authentic quality in a smaller bottled presentation.',
         image:
-          '/images/IVY CITY Grabba Bottled 5g.jpg',
+          'https://images.unsplash.com/photo-1507914372368-b2b085b925a1?q=80&w=1200&auto=format&fit=crop',
       },
       {
         name: 'IVY CITY GRABBA FULL BOX (30 COUNT)',
         description:
           'A premium full-box presentation designed for repeat buyers who appreciate freshness, value, and authentic tobacco leaves.',
         image:
-          '/images/IVY CITY GRABBA FULL BOX (30 COUNT).jpg',
+          'https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=1200&auto=format&fit=crop',
       },
       {
         name: 'IVY CITY Original Grabba Leaf 5g.',
         description:
           'Natural, whole leaf tobacco with a rich, authentic profile and a clean premium presentation.',
         image:
-          '/images/IVY CITY Original Grabba Leaf 5g.jpg',
+          'https://images.unsplash.com/photo-1523293915678-d126868e96e8?q=80&w=1200&auto=format&fit=crop',
       },
     ],
     []
   )
+
+  useEffect(() => {
+    const saved = window.sessionStorage.getItem('ivycity_age_verified')
+    if (saved === 'true') {
+      setAgeVerified(true)
+    }
+    setAgeCheckReady(true)
+  }, [])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % 4)
+    }, 4500)
+
+    return () => clearInterval(timer)
+  }, [])
 
   const pillars = [
     {
@@ -79,21 +98,86 @@ export default function IvyCityGrabbaReplica() {
     'Customer Satisfaction: Dedicated support and a seamless shopping experience.',
   ]
 
+  // EASY EDIT SECTION: replace, remove, or add more customer testimonials here
   const testimonials = [
     {
       quote:
         'The quality of these tobacco leaves is unmatched. Truly a premium experience from start to finish.',
       name: 'Michael R.',
+      role: 'Verified Customer',
+      image:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop', // replace with your own customer image URL or /images/customer-1.jpg
     },
     {
       quote:
         'Fast shipping and exceptional customer service. The leaves arrived fresh and perfectly packaged.',
       name: 'James T.',
+      role: 'Verified Customer',
+      image:
+        'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop', // replace with your own customer image URL or /images/customer-2.jpg
     },
     {
       quote:
         'Been ordering for months now. Consistent quality and authentic Dominican tobacco every time.',
       name: 'David L.',
+      role: 'Verified Customer',
+      image:
+        'https://images.unsplash.com/photo-1504593811423-6dd665756598?q=80&w=800&auto=format&fit=crop', // replace with your own customer image URL or /images/customer-3.jpg
+    },
+  ]
+
+  const featuredSlides = [
+    {
+      title: 'Premium Grabba Leaves',
+      subtitle: 'Authenticity, quality, and craftsmanship in every order.',
+      image: products[0].image,
+    },
+    {
+      title: 'Direct Dominican Republic Sourcing',
+      subtitle: 'Carefully selected leaves from trusted growers and traditional methods.',
+      image: products[2].image,
+    },
+    {
+      title: 'Luxury Brand Experience',
+      subtitle: 'A refined catalog designed to showcase the IVY CITY standard.',
+      image: products[3].image,
+    },
+    {
+      title: 'Order Directly With Confidence',
+      subtitle: 'Customers can reach out by email or request form for a personal ordering experience.',
+      image: products[1].image,
+    },
+  ]
+
+  // EASY EDIT SECTION: replace, remove, or add more video testimonial cards here
+  // For each new video, duplicate one object below and change title, platform, description, href, and thumbnail
+  const videoTestimonials = [
+    {
+      title: 'Customer Story / TikTok Testimony',
+      platform: 'TikTok',
+      embedTitle: 'TikTok testimonial video placeholder',
+      description: 'Replace this block with your TikTok testimonial embed or linked video.',
+      href: '#', // paste your TikTok / Instagram / YouTube link here
+      thumbnail:
+        'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop', // replace with your own thumbnail or /images/video-1.jpg
+    },
+    {
+      title: 'Instagram Reel Review',
+      platform: 'Instagram',
+      embedTitle: 'Instagram reel testimonial placeholder',
+      description: 'Use this area for an Instagram Reel from a customer or creator review.',
+      href: '#', // paste your TikTok / Instagram / YouTube link here
+      thumbnail:
+        'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop', // replace with your own thumbnail or /images/video-2.jpg
+    },
+    {
+      title: 'Product Experience Video',
+      platform: 'Video Testimony',
+      embedTitle: 'Customer video testimony placeholder',
+      description: 'Add a third social proof video here to make the page feel more trusted and active.',
+      href: '#', // paste your TikTok / Instagram / YouTube link here
+      thumbnail:
+        'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200&auto=format&fit=crop', // replace with your own thumbnail or /images/video-3.jpg
     },
   ]
 
@@ -104,24 +188,76 @@ export default function IvyCityGrabbaReplica() {
     { label: 'Order', href: '#order' },
   ]
 
-  return (
-    <div className="min-h-screen bg-[#060606] text-white selection:bg-amber-300 selection:text-black">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.16),transparent_28%),radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.08),transparent_20%),linear-gradient(to_bottom,#0a0a0a,#050505)]" />
+  const handleAgeEnter = () => {
+    setAgeVerified(true)
+    window.sessionStorage.setItem('ivycity_age_verified', 'true')
+  }
 
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-xl">
+  const handleUnderAge = () => {
+    window.location.href = 'https://www.google.com'
+  }
+
+  return (
+    <div className="min-h-screen bg-[#f0c419] text-black selection:bg-black selection:text-[#f0c419]">
+      {ageCheckReady && !ageVerified ? (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 px-4">
+          <div className="w-full max-w-xl rounded-[2rem] border border-black/10 bg-[#f0c419] p-8 text-center shadow-2xl sm:p-10">
+            <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full border-4 border-black bg-black text-center text-[10px] font-bold uppercase tracking-[0.25em] text-[#f0c419] sm:h-28 sm:w-28 sm:text-xs">
+              Ivy City
+              <br />
+              Grabba
+            </div>
+            <p className="text-xs font-semibold uppercase tracking-[0.45em] text-black/70">
+              Age Verification
+            </p>
+            <h2 className="mt-4 text-3xl font-bold sm:text-4xl">You must be 21 or older to enter</h2>
+            <p className="mx-auto mt-5 max-w-lg text-sm leading-7 text-black/75 sm:text-base">
+              This website contains tobacco-related content and is intended only for adults of legal
+              smoking age. Please confirm that you are at least 21 years old to continue.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+              <button
+                type="button"
+                onClick={handleAgeEnter}
+                className="inline-flex items-center justify-center rounded-full bg-black px-8 py-3.5 text-sm font-semibold text-[#f0c419] transition hover:opacity-90"
+              >
+                I am 21+
+              </button>
+              <button
+                type="button"
+                onClick={handleUnderAge}
+                className="inline-flex items-center justify-center rounded-full border border-black/20 bg-white/20 px-8 py-3.5 text-sm font-semibold text-black transition hover:bg-white/35"
+              >
+                I am under 21
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      <header className="sticky top-0 z-50 border-b border-black/10 bg-[#f0c419] backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <div className="min-w-0">
-            <p className="text-[10px] uppercase tracking-[0.42em] text-amber-300 sm:text-[11px]">
-              21+ Only • Premium Tobacco Products Online
-            </p>
-            <h1 className="mt-1 truncate text-base font-semibold tracking-[0.28em] sm:text-lg">
-              IVY CITY GRABBA
-            </h1>
+            <div className="flex items-center gap-3">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-black bg-black text-center text-[8px] font-bold uppercase tracking-[0.18em] text-[#f0c419] sm:h-14 sm:w-14 sm:text-[9px]">
+                Ivy City
+                <br />
+                Grabba
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.42em] text-black/75 sm:text-[11px]">
+                  21+ Only • Premium Tobacco Products Online
+                </p>
+                <h1 className="mt-1 truncate text-base font-semibold tracking-[0.28em] text-black sm:text-lg">
+                  IVY CITY GRABBA
+                </h1>
+              </div>
+            </div>
           </div>
 
-          <nav className="hidden items-center gap-8 text-sm text-white/75 md:flex">
+          <nav className="hidden items-center gap-8 text-sm text-black/80 md:flex">
             {navLinks.map((link) => (
-              <a key={link.label} href={link.href} className="transition hover:text-amber-300">
+              <a key={link.label} href={link.href} className="transition hover:text-black/55">
                 {link.label}
               </a>
             ))}
@@ -130,13 +266,13 @@ export default function IvyCityGrabbaReplica() {
           <div className="hidden items-center gap-3 md:flex">
             <a
               href="mailto:ivycitygrabbaa@gmail.com"
-              className="rounded-full border border-white/12 px-4 py-2 text-sm text-white/80 transition hover:border-amber-300 hover:text-amber-300"
+              className="rounded-full border border-black/15 px-4 py-2 text-sm text-black transition hover:bg-black hover:text-[#f0c419]"
             >
               Email Us
             </a>
             <a
               href="#order"
-              className="rounded-full border border-amber-300/30 bg-amber-300/10 px-5 py-2.5 text-sm font-medium text-amber-200 transition hover:border-amber-300 hover:bg-amber-300 hover:text-black"
+              className="rounded-full border border-black bg-black px-5 py-2.5 text-sm font-medium text-[#f0c419] transition hover:opacity-90"
             >
               Request Order
             </a>
@@ -145,7 +281,7 @@ export default function IvyCityGrabbaReplica() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/15 bg-black text-[#f0c419] md:hidden"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -153,28 +289,28 @@ export default function IvyCityGrabbaReplica() {
         </div>
 
         {mobileMenuOpen ? (
-          <div className="border-t border-white/10 px-4 py-4 md:hidden">
+          <div className="border-t border-black/10 px-4 py-4 md:hidden">
             <div className="flex flex-col gap-3">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3 text-sm text-white/80 transition hover:border-amber-300 hover:text-amber-300"
+                  className="rounded-2xl border border-black/10 bg-black/5 px-4 py-3 text-sm text-black transition hover:bg-black hover:text-[#f0c419]"
                 >
                   {link.label}
                 </a>
               ))}
               <a
                 href="mailto:ivycitygrabbaa@gmail.com"
-                className="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3 text-sm text-white/80"
+                className="rounded-2xl border border-black/10 bg-black/5 px-4 py-3 text-sm text-black"
               >
                 Email Us
               </a>
               <a
                 href="#order"
                 onClick={() => setMobileMenuOpen(false)}
-                className="rounded-2xl bg-amber-300 px-4 py-3 text-sm font-semibold text-black"
+                className="rounded-2xl bg-black px-4 py-3 text-sm font-semibold text-[#f0c419]"
               >
                 Request Order
               </a>
@@ -183,80 +319,91 @@ export default function IvyCityGrabbaReplica() {
         ) : null}
       </header>
 
-      <section className="relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-25"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1516594798947-e65505dbb29d?q=80&w=1800&auto=format&fit=crop')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-[#060606]" />
+      <section className="relative overflow-hidden border-b border-black/10">
+        <div className="relative min-h-[calc(100vh-81px)] sm:min-h-[calc(100vh-89px)]">
+          <img
+            src={featuredSlides[activeSlide].image}
+            alt={featuredSlides[activeSlide].title}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/30 to-black/65" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.55),rgba(0,0,0,0.15),rgba(0,0,0,0.35))]" />
 
-        <div className="relative mx-auto grid min-h-[88vh] max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:py-24">
-          <div>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-300/20 bg-amber-300/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-amber-200 sm:text-sm">
-              <ShieldCheck className="h-4 w-4" />
-              Age Verification Required
-            </div>
-            <h2 className="max-w-4xl text-4xl font-semibold leading-[1.02] sm:text-5xl md:text-6xl lg:text-7xl">
-              Premium Grabba Leaves sourced with authenticity, quality, and craftsmanship.
-            </h2>
-            <p className="mt-6 max-w-2xl text-sm leading-7 text-white/72 sm:text-base sm:leading-8 md:text-lg">
-              Discover our curated collection of premium tobacco products, carefully selected for
-              quality and craftsmanship. From classic blends to exclusive offerings, each product
-              reflects our commitment to excellence and customer satisfaction.
-            </p>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
-              <a
-                href="#products"
-                className="inline-flex items-center justify-center rounded-full bg-amber-300 px-6 py-3.5 text-sm font-semibold text-black transition hover:scale-[1.02]"
-              >
-                View Products
-              </a>
-              <a
-                href="#about"
-                className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3.5 text-sm font-semibold text-white transition hover:border-amber-300 hover:text-amber-300"
-              >
-                Learn More
-              </a>
-            </div>
-
-            <div className="mt-10 grid gap-4 sm:grid-cols-3">
-              {pillars.map((pillar) => {
-                const Icon = pillar.icon
-                return (
-                  <div
-                    key={pillar.title}
-                    className="rounded-3xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm"
-                  >
-                    <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-300/10 text-amber-300">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="text-base font-semibold">{pillar.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-white/65">{pillar.description}</p>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-
-          <div className="grid gap-4">
-            <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] shadow-2xl backdrop-blur-xl">
-              <img
-                src={products[0].image}
-                alt={products[0].name}
-                className="h-[300px] w-full object-cover sm:h-[360px] lg:h-[420px]"
-              />
-              <div className="p-5 sm:p-6">
-                <p className="text-xs uppercase tracking-[0.35em] text-amber-300">Featured Product</p>
-                <h3 className="mt-3 text-xl font-semibold leading-7 sm:text-2xl">{products[0].name}</h3>
-                <p className="mt-4 text-sm leading-7 text-white/70 sm:text-base">
-                  {products[0].description}
+          <div className="relative mx-auto flex min-h-[calc(100vh-81px)] max-w-7xl items-end px-4 py-10 sm:min-h-[calc(100vh-89px)] sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+            <div className="grid w-full gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+              <div className="max-w-3xl text-white">
+                <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#f0c419]/45 bg-[#f0c419]/15 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[#f7dd73] sm:text-sm">
+                  <ShieldCheck className="h-4 w-4" />
+                  Age Verification Required
+                </div>
+                <p className="text-xs font-semibold uppercase tracking-[0.42em] text-[#f7dd73] sm:text-sm">
+                  IVY CITY GRABBA
                 </p>
+                <h2 className="mt-4 text-4xl font-semibold leading-[1.02] sm:text-5xl md:text-6xl lg:text-7xl">
+                  {featuredSlides[activeSlide].title}
+                </h2>
+                <p className="mt-5 max-w-2xl text-sm leading-7 text-white/88 sm:text-base sm:leading-8 md:text-lg">
+                  {featuredSlides[activeSlide].subtitle}
+                </p>
+
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+                  <a
+                    href="#products"
+                    className="inline-flex items-center justify-center rounded-full bg-[#f0c419] px-6 py-3.5 text-sm font-semibold text-black transition hover:opacity-90"
+                  >
+                    View Products
+                  </a>
+                  <a
+                    href="#order"
+                    className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white hover:text-black"
+                  >
+                    Request Order
+                  </a>
+                </div>
+              </div>
+
+              <div className="w-full justify-self-end lg:max-w-md">
+                <div className="rounded-[2rem] border border-white/15 bg-black/35 p-4 text-white shadow-2xl backdrop-blur-md sm:p-5">
+                  <p className="text-xs uppercase tracking-[0.35em] text-[#f7dd73]">Featured Showcase</p>
+                  <p className="mt-3 text-lg font-semibold sm:text-xl">{featuredSlides[activeSlide].title}</p>
+                  <p className="mt-3 text-sm leading-7 text-white/80">{featuredSlides[activeSlide].subtitle}</p>
+
+                  <div className="mt-6 flex items-center justify-between gap-3">
+                    <div className="flex gap-2">
+                      {featuredSlides.map((slide, index) => (
+                        <button
+                          key={slide.title}
+                          type="button"
+                          onClick={() => setActiveSlide(index)}
+                          aria-label={`Go to slide ${index + 1}`}
+                          className={`h-2.5 rounded-full transition-all ${
+                            activeSlide === index ? 'w-8 bg-[#f0c419]' : 'w-2.5 bg-white/35 hover:bg-white/60'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setActiveSlide((prev) =>
+                            prev === 0 ? featuredSlides.length - 1 : prev - 1
+                          )
+                        }
+                        className="rounded-full border border-white/15 px-4 py-2 text-sm text-white transition hover:bg-white hover:text-black"
+                      >
+                        Prev
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setActiveSlide((prev) => (prev + 1) % featuredSlides.length)}
+                        className="rounded-full border border-white/15 px-4 py-2 text-sm text-white transition hover:bg-white hover:text-black"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -266,17 +413,17 @@ export default function IvyCityGrabbaReplica() {
       <section id="about" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
         <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
           <div>
-            <p className="text-sm uppercase tracking-[0.45em] text-amber-300">About IVY CITY</p>
-            <h2 className="mt-4 text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl">
+            <p className="text-sm uppercase tracking-[0.45em] text-black/75">About IVY CITY</p>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight text-black sm:text-4xl md:text-5xl">
               A trusted source for premium tobacco products across the United States.
             </h2>
-            <div className="mt-6 rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 sm:p-8">
-              <p className="text-base leading-8 text-white/72">
+            <div className="mt-6 rounded-[2rem] border border-black/10 bg-white/25 p-6 sm:p-8">
+              <p className="text-base leading-8 text-black/80">
                 Welcome to IVY CITY, your trusted source for premium tobacco products. We are a
                 licensed tobacco retailer committed to providing authentic, high-quality tobacco
                 leaves to discerning customers across the United States.
               </p>
-              <p className="mt-5 text-base leading-8 text-white/72">
+              <p className="mt-5 text-base leading-8 text-black/80">
                 IVY CITY was founded on a passion for quality and authenticity in the tobacco
                 industry. We believe that our customers deserve access to the finest tobacco
                 products, sourced responsibly and delivered with care.
@@ -285,9 +432,9 @@ export default function IvyCityGrabbaReplica() {
           </div>
 
           <div className="space-y-6">
-            <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 sm:p-8">
-              <h3 className="text-2xl font-semibold">Our Commitment to Quality</h3>
-              <p className="mt-4 text-sm leading-7 text-white/70 sm:text-base">
+            <div className="rounded-[2rem] border border-black/10 bg-white/25 p-6 sm:p-8">
+              <h3 className="text-2xl font-semibold text-black">Our Commitment to Quality</h3>
+              <p className="mt-4 text-sm leading-7 text-black/75 sm:text-base">
                 We work directly with trusted farmers in the Dominican Republic who cultivate
                 premium tobacco using traditional methods passed down through generations. Each leaf
                 is carefully selected, cured, and processed by skilled artisans to ensure
@@ -297,7 +444,7 @@ export default function IvyCityGrabbaReplica() {
                 {qualityPoints.map((point) => (
                   <div
                     key={point}
-                    className="rounded-2xl border border-white/8 bg-black/20 px-4 py-3 text-sm leading-6 text-white/75"
+                    className="rounded-2xl border border-black/8 bg-black/5 px-4 py-3 text-sm leading-6 text-black/75"
                   >
                     {point}
                   </div>
@@ -306,24 +453,24 @@ export default function IvyCityGrabbaReplica() {
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">
-              <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6">
-                <h3 className="text-xl font-semibold">Compliance and Responsibility</h3>
+              <div className="rounded-[2rem] border border-black/10 bg-white/25 p-6">
+                <h3 className="text-xl font-semibold text-black">Compliance and Responsibility</h3>
                 <div className="mt-5 space-y-3">
                   {compliancePoints.map((point) => (
-                    <div key={point} className="flex gap-3 text-sm leading-6 text-white/72">
-                      <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-amber-300" />
+                    <div key={point} className="flex gap-3 text-sm leading-6 text-black/75">
+                      <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-black" />
                       <span>{point}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6">
-                <h3 className="text-xl font-semibold">Our Promise</h3>
+              <div className="rounded-[2rem] border border-black/10 bg-white/25 p-6">
+                <h3 className="text-xl font-semibold text-black">Our Promise</h3>
                 <div className="mt-5 space-y-3">
                   {promisePoints.map((point) => (
-                    <div key={point} className="flex gap-3 text-sm leading-6 text-white/72">
-                      <Star className="mt-0.5 h-4 w-4 shrink-0 text-amber-300" />
+                    <div key={point} className="flex gap-3 text-sm leading-6 text-black/75">
+                      <Star className="mt-0.5 h-4 w-4 shrink-0 text-black" />
                       <span>{point}</span>
                     </div>
                   ))}
@@ -334,14 +481,14 @@ export default function IvyCityGrabbaReplica() {
         </div>
       </section>
 
-      <section id="products" className="border-y border-white/10 bg-white/[0.03] py-20 sm:py-24">
+      <section id="products" className="border-y border-black/10 bg-[#e0b813] py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.45em] text-amber-300">Premium Selection</p>
-              <h2 className="mt-4 text-3xl font-semibold sm:text-4xl md:text-5xl">Explore the collection</h2>
+              <p className="text-sm uppercase tracking-[0.45em] text-black/75">Premium Selection</p>
+              <h2 className="mt-4 text-3xl font-semibold text-black sm:text-4xl md:text-5xl">Explore the collection</h2>
             </div>
-            <p className="max-w-2xl text-sm leading-7 text-white/65 sm:text-base">
+            <p className="max-w-2xl text-sm leading-7 text-black/70 sm:text-base">
               This site now works as a premium catalog and inquiry experience. Visitors can browse
               products, learn about IVY CITY, and reach out directly to place an order.
             </p>
@@ -351,7 +498,7 @@ export default function IvyCityGrabbaReplica() {
             {products.map((product) => (
               <div
                 key={product.name}
-                className="group overflow-hidden rounded-[2rem] border border-white/10 bg-[#0d0d0d] transition duration-300 hover:-translate-y-1 hover:border-amber-300/40"
+                className="group overflow-hidden rounded-[2rem] border border-black/10 bg-[#f7d33e] transition duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -361,11 +508,11 @@ export default function IvyCityGrabbaReplica() {
                   />
                 </div>
                 <div className="p-5 sm:p-6">
-                  <h3 className="text-base font-semibold leading-7 sm:min-h-[84px]">{product.name}</h3>
-                  <p className="mt-4 text-sm leading-7 text-white/65">{product.description}</p>
+                  <h3 className="text-base font-semibold leading-7 text-black sm:min-h-[84px]">{product.name}</h3>
+                  <p className="mt-4 text-sm leading-7 text-black/70">{product.description}</p>
                   <a
                     href="#order"
-                    className="mt-6 inline-flex rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-white transition hover:border-amber-300 hover:text-amber-300"
+                    className="mt-6 inline-flex rounded-full border border-black/15 px-5 py-2.5 text-sm font-medium text-black transition hover:bg-black hover:text-[#f0c419]"
                   >
                     Inquire to Order
                   </a>
@@ -378,56 +525,114 @@ export default function IvyCityGrabbaReplica() {
 
       <section id="reviews" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm uppercase tracking-[0.45em] text-amber-300">What Our Customers Say</p>
-          <h2 className="mt-4 text-3xl font-semibold sm:text-4xl md:text-5xl">
+          <p className="text-sm uppercase tracking-[0.45em] text-black/75">What Our Customers Say</p>
+          <h2 className="mt-4 text-3xl font-semibold text-black sm:text-4xl md:text-5xl">
             Trusted by premium tobacco enthusiasts
           </h2>
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {testimonials.map((item) => (
-            <div key={item.name} className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 sm:p-8">
-              <div className="text-4xl text-amber-300">“</div>
-              <p className="mt-4 text-sm leading-8 text-white/72 sm:text-base">{item.quote}</p>
-              <div className="mt-8 border-t border-white/10 pt-5">
-                <p className="font-medium">{item.name}</p>
-                <p className="text-sm text-white/50">Verified Customer</p>
+            <div key={item.name} className="rounded-[2rem] border border-black/10 bg-white/25 p-6 sm:p-8">
+              <div className="flex items-center gap-4">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="h-16 w-16 rounded-full object-cover ring-2 ring-black/10"
+                />
+                <div>
+                  <p className="font-medium text-black">{item.name}</p>
+                  <p className="text-sm text-black/55">{item.role}</p>
+                </div>
               </div>
+              <div className="mt-6 text-4xl text-black">“</div>
+              <p className="mt-4 text-sm leading-8 text-black/75 sm:text-base">{item.quote}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-16">
+          <div className="max-w-2xl">
+            <p className="text-sm uppercase tracking-[0.45em] text-black/75">Video Testimonies</p>
+            <h3 className="mt-4 text-3xl font-semibold text-black sm:text-4xl">
+              Add your TikTok and Instagram customer videos here
+            </h3>
+            <p className="mt-4 text-sm leading-7 text-black/70 sm:text-base">
+              These cards are ready for your social proof videos. You can replace each placeholder
+              with an embedded TikTok, Instagram Reel, or a custom hosted video testimony.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            {videoTestimonials.map((video) => (
+              <div
+                key={video.title}
+                className="overflow-hidden rounded-[2rem] border border-black/10 bg-[#f7d33e] shadow-lg"
+              >
+                <div className="relative aspect-[9/16] overflow-hidden bg-black">
+                  <img
+                    src={video.thumbnail}
+                    alt={video.title}
+                    className="h-full w-full object-cover opacity-75"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/20 backdrop-blur-md">
+                      <PlayCircle className="h-10 w-10 text-white" />
+                    </div>
+                  </div>
+                  <div className="absolute left-4 top-4 rounded-full bg-[#f0c419] px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-black">
+                    {video.platform}
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                    <p className="text-lg font-semibold">{video.title}</p>
+                    <p className="mt-2 text-sm leading-6 text-white/80">{video.description}</p>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <a
+                    href={video.href}
+                    className="inline-flex rounded-full border border-black/15 px-5 py-2.5 text-sm font-medium text-black transition hover:bg-black hover:text-[#f0c419]"
+                  >
+                    Replace with real video
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       <section id="order" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
         <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr]">
-          <div className="rounded-[2rem] border border-white/10 bg-gradient-to-b from-amber-300/10 to-white/[0.03] p-6 sm:p-8 md:p-10">
-            <p className="text-sm uppercase tracking-[0.45em] text-amber-300">Direct Ordering</p>
-            <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">Order by email or request form</h2>
-            <p className="mt-5 text-sm leading-8 text-white/72 sm:text-base">
+          <div className="rounded-[2rem] border border-black/10 bg-[#e0b813] p-6 sm:p-8 md:p-10">
+            <p className="text-sm uppercase tracking-[0.45em] text-black/75">Direct Ordering</p>
+            <h2 className="mt-4 text-3xl font-semibold text-black sm:text-4xl">Order by email or request form</h2>
+            <p className="mt-5 text-sm leading-8 text-black/75 sm:text-base">
               We do not use direct online checkout here. To place an order, customers can email us
               directly or submit the form with the products they are interested in.
             </p>
 
-            <div className="mt-8 space-y-4 text-white/72">
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
-                <p className="text-xs uppercase tracking-[0.3em] text-amber-300">Email Us</p>
+            <div className="mt-8 space-y-4 text-black/75">
+              <div className="rounded-2xl border border-black/10 bg-white/25 p-5">
+                <p className="text-xs uppercase tracking-[0.3em] text-black/75">Email Us</p>
                 <a
                   href="mailto:ivycitygrabbaa@gmail.com"
-                  className="mt-2 flex items-center gap-2 break-all text-base font-medium text-white hover:text-amber-300 sm:text-lg"
+                  className="mt-2 flex items-center gap-2 break-all text-base font-medium text-black hover:opacity-70 sm:text-lg"
                 >
                   <Mail className="h-4 w-4 shrink-0" />
                   ivycitygrabbaa@gmail.com
                 </a>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
-                <p className="text-xs uppercase tracking-[0.3em] text-amber-300">Business Hours</p>
+              <div className="rounded-2xl border border-black/10 bg-white/25 p-5">
+                <p className="text-xs uppercase tracking-[0.3em] text-black/75">Business Hours</p>
                 <p className="mt-2 flex items-center gap-2 text-sm sm:text-base">
-                  <Clock className="h-4 w-4 shrink-0 text-amber-300" />
+                  <Clock className="h-4 w-4 shrink-0 text-black" />
                   Monday - Friday, 9 AM - 6 PM EST
                 </p>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
-                <p className="text-xs uppercase tracking-[0.3em] text-amber-300">Sourcing</p>
+              <div className="rounded-2xl border border-black/10 bg-white/25 p-5">
+                <p className="text-xs uppercase tracking-[0.3em] text-black/75">Sourcing</p>
                 <p className="mt-2 text-sm leading-7 sm:text-base">
                   Our premium grabba leaves are sourced directly from the Dominican Republic.
                 </p>
@@ -435,10 +640,10 @@ export default function IvyCityGrabbaReplica() {
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-white/10 bg-[#0b0b0b] p-6 sm:p-8 md:p-10">
+          <div className="rounded-[2rem] border border-black/10 bg-[#f7d33e] p-6 sm:p-8 md:p-10">
             <div className="mb-8">
-              <p className="text-sm uppercase tracking-[0.45em] text-amber-300">Order Request Form</p>
-              <h3 className="mt-4 text-2xl font-semibold sm:text-3xl">Tell us what you need</h3>
+              <p className="text-sm uppercase tracking-[0.45em] text-black/75">Order Request Form</p>
+              <h3 className="mt-4 text-2xl font-semibold text-black sm:text-3xl">Tell us what you need</h3>
             </div>
 
             <form
@@ -451,38 +656,38 @@ export default function IvyCityGrabbaReplica() {
               <input type="hidden" name="_template" value="table" />
 
               <div>
-                <label className="mb-2 block text-sm text-white/70">Name</label>
+                <label className="mb-2 block text-sm text-black/75">Name</label>
                 <input
                   type="text"
                   name="name"
                   placeholder="Your full name"
-                  className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm outline-none placeholder:text-white/30 focus:border-amber-300"
+                  className="h-12 w-full rounded-2xl border border-black/10 bg-white/60 px-4 text-sm text-black outline-none placeholder:text-black/40 focus:border-black"
                 />
               </div>
               <div>
-                <label className="mb-2 block text-sm text-white/70">Email *</label>
+                <label className="mb-2 block text-sm text-black/75">Email *</label>
                 <input
                   type="email"
                   name="email"
                   required
                   placeholder="you@example.com"
-                  className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm outline-none placeholder:text-white/30 focus:border-amber-300"
+                  className="h-12 w-full rounded-2xl border border-black/10 bg-white/60 px-4 text-sm text-black outline-none placeholder:text-black/40 focus:border-black"
                 />
               </div>
               <div>
-                <label className="mb-2 block text-sm text-white/70">Phone number</label>
+                <label className="mb-2 block text-sm text-black/75">Phone number</label>
                 <input
                   type="tel"
                   name="phone"
                   placeholder="Optional"
-                  className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm outline-none placeholder:text-white/30 focus:border-amber-300"
+                  className="h-12 w-full rounded-2xl border border-black/10 bg-white/60 px-4 text-sm text-black outline-none placeholder:text-black/40 focus:border-black"
                 />
               </div>
               <div>
-                <label className="mb-2 block text-sm text-white/70">Interested Product</label>
+                <label className="mb-2 block text-sm text-black/75">Interested Product</label>
                 <select
                   name="product"
-                  className="h-12 w-full rounded-2xl border border-white/10 bg-[#101010] px-4 text-sm outline-none focus:border-amber-300"
+                  className="h-12 w-full rounded-2xl border border-black/10 bg-white/60 px-4 text-sm text-black outline-none focus:border-black"
                 >
                   <option>Choose a product</option>
                   {products.map((product) => (
@@ -491,39 +696,39 @@ export default function IvyCityGrabbaReplica() {
                 </select>
               </div>
               <div>
-                <label className="mb-2 block text-sm text-white/70">Requested Quantity</label>
+                <label className="mb-2 block text-sm text-black/75">Requested Quantity</label>
                 <input
                   type="text"
                   name="quantity"
                   placeholder="Example: 2 boxes"
-                  className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm outline-none placeholder:text-white/30 focus:border-amber-300"
+                  className="h-12 w-full rounded-2xl border border-black/10 bg-white/60 px-4 text-sm text-black outline-none placeholder:text-black/40 focus:border-black"
                 />
               </div>
               <div>
-                <label className="mb-2 block text-sm text-white/70">Preferred Contact Method</label>
+                <label className="mb-2 block text-sm text-black/75">Preferred Contact Method</label>
                 <select
                   name="contact_method"
-                  className="h-12 w-full rounded-2xl border border-white/10 bg-[#101010] px-4 text-sm outline-none focus:border-amber-300"
+                  className="h-12 w-full rounded-2xl border border-black/10 bg-white/60 px-4 text-sm text-black outline-none focus:border-black"
                 >
                   <option>Email</option>
                   <option>Phone</option>
                 </select>
               </div>
               <div className="md:col-span-2">
-                <label className="mb-2 block text-sm text-white/70">Comment</label>
+                <label className="mb-2 block text-sm text-black/75">Comment</label>
                 <textarea
                   name="comment"
                   placeholder="Tell us which items you want, quantities, and any other details."
-                  className="min-h-[160px] w-full rounded-3xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm outline-none placeholder:text-white/30 focus:border-amber-300"
+                  className="min-h-[160px] w-full rounded-3xl border border-black/10 bg-white/60 px-4 py-4 text-sm text-black outline-none placeholder:text-black/40 focus:border-black"
                 />
               </div>
               <div className="md:col-span-2 flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
-                <p className="max-w-xl text-sm leading-6 text-white/45">
+                <p className="max-w-xl text-sm leading-6 text-black/55">
                   Submit the request and it will be sent directly to our business email for follow-up.
                 </p>
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center rounded-full bg-amber-300 px-7 py-3.5 text-sm font-semibold text-black transition hover:scale-[1.02]"
+                  className="inline-flex items-center justify-center rounded-full bg-black px-7 py-3.5 text-sm font-semibold text-[#f0c419] transition hover:opacity-90"
                 >
                   Submit Request
                 </button>
@@ -533,34 +738,34 @@ export default function IvyCityGrabbaReplica() {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-white/[0.03]">
+      <section className="border-y border-black/10 bg-[#e0b813]">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-12 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
-            <p className="text-sm uppercase tracking-[0.45em] text-amber-300">Stay Updated with IVY CITY</p>
-            <h3 className="mt-3 text-2xl font-semibold sm:text-3xl">Join the list for updates and announcements</h3>
+            <p className="text-sm uppercase tracking-[0.45em] text-black/75">Stay Updated with IVY CITY</p>
+            <h3 className="mt-3 text-2xl font-semibold text-black sm:text-3xl">Join the list for updates and announcements</h3>
           </div>
           <form className="flex w-full max-w-xl flex-col gap-3 sm:flex-row">
             <input
               type="email"
               placeholder="Email"
-              className="h-12 flex-1 rounded-full border border-white/15 bg-black/30 px-5 text-sm outline-none placeholder:text-white/35 focus:border-amber-300"
+              className="h-12 flex-1 rounded-full border border-black/15 bg-white/60 px-5 text-sm text-black outline-none placeholder:text-black/40 focus:border-black"
             />
-            <button className="h-12 rounded-full bg-amber-300 px-6 text-sm font-semibold text-black">
+            <button className="h-12 rounded-full bg-black px-6 text-sm font-semibold text-[#f0c419]">
               Subscribe
             </button>
           </form>
         </div>
       </section>
 
-      <footer className="border-t border-white/10">
+      <footer className="border-t border-black/10 bg-[#f0c419]">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-end">
             <div>
-              <p className="text-xs uppercase tracking-[0.45em] text-amber-300">IVY CITY GRABBA</p>
-              <h3 className="mt-3 text-2xl font-semibold sm:text-3xl">
+              <p className="text-xs uppercase tracking-[0.45em] text-black/75">IVY CITY GRABBA</p>
+              <h3 className="mt-3 text-2xl font-semibold text-black sm:text-3xl">
                 Premium catalog and direct inquiry experience
               </h3>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/60 sm:text-base">
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-black/65 sm:text-base">
                 When you choose IVY CITY, you are choosing a retailer that values quality,
                 authenticity, and customer trust. We are not just selling tobacco products — we are
                 sharing a tradition of excellence that begins in the fields of the Dominican
@@ -568,33 +773,22 @@ export default function IvyCityGrabbaReplica() {
               </p>
             </div>
 
-            <div className="grid gap-8 sm:grid-cols-2">
+            <div className="grid gap-8 sm:grid-cols-1">
               <div>
-                <p className="text-sm font-semibold text-white">Quick Links</p>
-                <div className="mt-4 flex flex-col gap-3 text-sm text-white/60">
-                  <a href="#products" className="hover:text-amber-300">Products</a>
-                  <a href="#about" className="hover:text-amber-300">About</a>
-                  <a href="#reviews" className="hover:text-amber-300">Reviews</a>
-                  <a href="#order" className="hover:text-amber-300">Contact / Order</a>
-                </div>
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-white">Policies</p>
-                <div className="mt-4 flex flex-col gap-3 text-sm text-white/60">
-                  <a href="#" className="hover:text-amber-300">Privacy Policy</a>
-                  <a href="#" className="hover:text-amber-300">Terms of Service</a>
-                  <a href="#" className="hover:text-amber-300">Shipping Policy</a>
-                  <a href="#" className="hover:text-amber-300">FAQ</a>
+                <p className="text-sm font-semibold text-black">Quick Links</p>
+                <div className="mt-4 flex flex-col gap-3 text-sm text-black/65">
+                  <a href="#products" className="hover:opacity-65">Products</a>
+                  <a href="#about" className="hover:opacity-65">About</a>
+                  <a href="#order" className="hover:opacity-65">Contact / Order</a>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/45 md:flex-row md:items-center md:justify-between">
+          <div className="mt-10 flex flex-col gap-4 border-t border-black/10 pt-6 text-sm text-black/55 md:flex-row md:items-center md:justify-between">
             <p>© 2026 IVY CITY GRABBA. All rights reserved.</p>
             <div className="flex flex-wrap gap-5">
-              <a href="https://facebook.com" className="hover:text-amber-300">Facebook</a>
-              <a href="https://instagram.com/ivycitygrabba" className="hover:text-amber-300">Instagram</a>
+              <a href="https://instagram.com/ivycitygrabba" className="hover:opacity-65">Instagram</a>
             </div>
           </div>
         </div>
