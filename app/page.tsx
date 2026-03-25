@@ -34,7 +34,7 @@ export default function IvyCityGrabbaReplica() {
           'images/product-1-hover.jpg', // replace with your own hover image URL or /images/product-1-hover.jpg
       },
       {
-        name: 'IVY CITY Grabba Bottled 5g',
+        name: 'IVY CITY Grabba Leaf 5g',
         description:
           'A compact premium format for customers looking for authentic quality in a smaller bottled presentation.',
         image:
@@ -52,7 +52,7 @@ export default function IvyCityGrabbaReplica() {
           'images/product-3-hover.jpg', // replace with your own hover image URL or /images/product-3-hover.jpg
       },
       {
-        name: 'IVY CITY Original Grabba Leaf 5g.',
+        name: 'IVY CITY Original Grabba Bottled 5g.',
         description:
           'Natural, whole leaf tobacco with a rich, authentic profile and a clean premium presentation.',
         image:
