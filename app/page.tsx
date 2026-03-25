@@ -1,13 +1,16 @@
 "use client"
 
-import { Menu, Mail, ShieldCheck, Leaf, Star, Clock, MapPin, X, PlayCircle } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import Script from 'next/script'
+import { Menu, Mail, ShieldCheck, Leaf, Star, Clock, MapPin, X } from 'lucide-react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 export default function IvyCityGrabbaReplica() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSlide, setActiveSlide] = useState(0)
   const [ageVerified, setAgeVerified] = useState(false)
   const [ageCheckReady, setAgeCheckReady] = useState(false)
+  const instagramEmbedsRef = useRef<HTMLDivElement | null>(null)
+  const [instagramScriptReady, setInstagramScriptReady] = useState(false)
 
   const products = useMemo(
     () => [
@@ -16,28 +19,36 @@ export default function IvyCityGrabbaReplica() {
         description:
           'Premium bottled grabba prepared for customers who value consistency, quality, and craftsmanship in every order.',
         image:
-          'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?q=80&w=1200&auto=format&fit=crop',
+          'images/product-1.jpeg', // replace with your own product image URL or /images/product-1.jpg
+        hoverImage:
+          'images/product-1-hover.jpg', // replace with your own hover image URL or /images/product-1-hover.jpg
       },
       {
         name: 'IVY CITY Grabba Bottled 5g - COMING SOON',
         description:
           'A compact premium format for customers looking for authentic quality in a smaller bottled presentation.',
         image:
-          'https://images.unsplash.com/photo-1507914372368-b2b085b925a1?q=80&w=1200&auto=format&fit=crop',
+          'images/product-2.jpeg', // replace with your own product image URL or /images/product-2.jpg
+        hoverImage:
+          'images/product-2-hover.jpg', // replace with your own hover image URL or /images/product-2-hover.jpg
       },
       {
         name: 'IVY CITY GRABBA FULL BOX (30 COUNT)',
         description:
           'A premium full-box presentation designed for repeat buyers who appreciate freshness, value, and authentic tobacco leaves.',
         image:
-          'https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=1200&auto=format&fit=crop',
+          'images/product-3.jpeg', // replace with your own product image URL or /images/product-3.jpg
+        hoverImage:
+          'images/product-3-hover.jpg', // replace with your own hover image URL or /images/product-3-hover.jpg
       },
       {
         name: 'IVY CITY Original Grabba Leaf 5g.',
         description:
           'Natural, whole leaf tobacco with a rich, authentic profile and a clean premium presentation.',
         image:
-          'https://images.unsplash.com/photo-1523293915678-d126868e96e8?q=80&w=1200&auto=format&fit=crop',
+          'images/product-4.jpeg', // replace with your own product image URL or /images/product-4.jpg
+        hoverImage:
+          'images/product-4-hover.jpg', // replace with your own hover image URL or /images/product-4-hover.jpg
       },
     ],
     []
@@ -58,6 +69,8 @@ export default function IvyCityGrabbaReplica() {
 
     return () => clearInterval(timer)
   }, [])
+
+  
 
   const pillars = [
     {
@@ -130,56 +143,60 @@ export default function IvyCityGrabbaReplica() {
     {
       title: 'Premium Grabba Leaves',
       subtitle: 'Authenticity, quality, and craftsmanship in every order.',
-      image: products[0].image,
+      image: 'images/darker-premium-grabba-leaves.webp',
     },
     {
       title: 'Direct Dominican Republic Sourcing',
       subtitle: 'Carefully selected leaves from trusted growers and traditional methods.',
-      image: products[2].image,
+      image: 'images/tobacco-processing.webp',
     },
     {
       title: 'Luxury Brand Experience',
       subtitle: 'A refined catalog designed to showcase the IVY CITY standard.',
-      image: products[3].image,
+      image: 'images/tobacco-farm-in-dominican-republic-at-golden-hour.webp',
     },
     {
       title: 'Order Directly With Confidence',
       subtitle: 'Customers can reach out by email or request form for a personal ordering experience.',
-      image: products[1].image,
+      image: 'images/ivy-city-products-enhanced.webp',
     },
   ]
 
-  // EASY EDIT SECTION: replace, remove, or add more video testimonial cards here
-  // For each new video, duplicate one object below and change title, platform, description, href, and thumbnail
+  // EASY EDIT SECTION: replace, remove, or add more Instagram video testimonial cards here
+  // Use the NORMAL Reel link, not /embed
+  // Example: https://www.instagram.com/reel/DT039kZkvPm/
   const videoTestimonials = [
-    {
-      title: 'Customer Story / TikTok Testimony',
-      platform: 'TikTok',
-      embedTitle: 'TikTok testimonial video placeholder',
-      description: 'Replace this block with your TikTok testimonial embed or linked video.',
-      href: '#', // paste your TikTok / Instagram / YouTube link here
-      thumbnail:
-        'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop', // replace with your own thumbnail or /images/video-1.jpg
-    },
     {
       title: 'Instagram Reel Review',
       platform: 'Instagram',
-      embedTitle: 'Instagram reel testimonial placeholder',
-      description: 'Use this area for an Instagram Reel from a customer or creator review.',
-      href: '#', // paste your TikTok / Instagram / YouTube link here
-      thumbnail:
-        'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop', // replace with your own thumbnail or /images/video-2.jpg
+      // description: 'Customer review',
+      permalink: 'https://www.instagram.com/reel/DT039kZkvPm/',
     },
     {
-      title: 'Product Experience Video',
-      platform: 'Video Testimony',
-      embedTitle: 'Customer video testimony placeholder',
-      description: 'Add a third social proof video here to make the page feel more trusted and active.',
-      href: '#', // paste your TikTok / Instagram / YouTube link here
-      thumbnail:
-        'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200&auto=format&fit=crop', // replace with your own thumbnail or /images/video-3.jpg
+      title: 'Customer Reel Review',
+      platform: 'Instagram',
+      // description: 'Use this area for an Instagram Reel from a customer or creator review.',
+      permalink: 'https://www.instagram.com/reel/DUqj4qIjYJI/',
+    },
+    {
+      title: 'Product Experience Reel',
+      platform: 'Instagram',
+      // description: 'Add a third social proof video here to make the page feel more trusted and active.',
+      permalink: 'https://www.instagram.com/reel/DT03Spwkmh6/',
     },
   ]
+
+  useEffect(() => {
+    if (!instagramScriptReady || !instagramEmbedsRef.current) return
+
+    const timer = window.setTimeout(() => {
+      if (window.instgrm?.Embeds?.process) {
+        window.instgrm.Embeds.process()
+      }
+    }, 150)
+
+    return () => window.clearTimeout(timer)
+  }, [instagramScriptReady, videoTestimonials])
 
   const navLinks = [
     { label: 'Products', href: '#products' },
@@ -198,15 +215,21 @@ export default function IvyCityGrabbaReplica() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f0c419] text-black selection:bg-black selection:text-[#f0c419]">
+    <>
+      <Script
+        src="https://www.instagram.com/embed.js"
+        strategy="afterInteractive"
+        onLoad={() => setInstagramScriptReady(true)}
+      />
+      <div className="min-h-screen bg-[#f0c419] text-black selection:bg-black selection:text-[#f0c419]">
       {ageCheckReady && !ageVerified ? (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 px-4">
           <div className="w-full max-w-xl rounded-[2rem] border border-black/10 bg-[#f0c419] p-8 text-center shadow-2xl sm:p-10">
-            <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full border-4 border-black bg-black text-center text-[10px] font-bold uppercase tracking-[0.25em] text-[#f0c419] sm:h-28 sm:w-28 sm:text-xs">
-              Ivy City
-              <br />
-              Grabba
-            </div>
+            <img
+              src="/images/logo.png"
+              alt="Ivy City Grabba"
+              className="h-12 w-auto object-contain"
+            />
             <p className="text-xs font-semibold uppercase tracking-[0.45em] text-black/70">
               Age Verification
             </p>
@@ -239,11 +262,11 @@ export default function IvyCityGrabbaReplica() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <div className="min-w-0">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-black bg-black text-center text-[8px] font-bold uppercase tracking-[0.18em] text-[#f0c419] sm:h-14 sm:w-14 sm:text-[9px]">
-                Ivy City
-                <br />
-                Grabba
-              </div>
+              <img
+                src="/images/logo.png"
+                alt="Ivy City Grabba"
+                className="h-12 w-auto object-contain"
+              />
               <div>
                 <p className="text-[10px] uppercase tracking-[0.42em] text-black/75 sm:text-[11px]">
                   21+ Only • Premium Tobacco Products Online
@@ -488,10 +511,10 @@ export default function IvyCityGrabbaReplica() {
               <p className="text-sm uppercase tracking-[0.45em] text-black/75">Premium Selection</p>
               <h2 className="mt-4 text-3xl font-semibold text-black sm:text-4xl md:text-5xl">Explore the collection</h2>
             </div>
-            <p className="max-w-2xl text-sm leading-7 text-black/70 sm:text-base">
+            {/* <p className="max-w-2xl text-sm leading-7 text-black/70 sm:text-base">
               This site now works as a premium catalog and inquiry experience. Visitors can browse
               products, learn about IVY CITY, and reach out directly to place an order.
-            </p>
+            </p> */}
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
@@ -504,7 +527,12 @@ export default function IvyCityGrabbaReplica() {
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="h-72 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-80"
+                    className="h-72 w-full object-cover transition duration-500 group-hover:scale-105 group-hover:opacity-0 sm:h-80"
+                  />
+                  <img
+                    src={product.hoverImage}
+                    alt={`${product.name} alternate view`}
+                    className="absolute inset-0 h-72 w-full object-cover opacity-0 transition duration-500 group-hover:scale-105 group-hover:opacity-100 sm:h-80"
                   />
                 </div>
                 <div className="p-5 sm:p-6">
@@ -554,48 +582,58 @@ export default function IvyCityGrabbaReplica() {
         <div className="mt-16">
           <div className="max-w-2xl">
             <p className="text-sm uppercase tracking-[0.45em] text-black/75">Video Testimonies</p>
-            <h3 className="mt-4 text-3xl font-semibold text-black sm:text-4xl">
-              Add your TikTok and Instagram customer videos here
-            </h3>
-            <p className="mt-4 text-sm leading-7 text-black/70 sm:text-base">
-              These cards are ready for your social proof videos. You can replace each placeholder
-              with an embedded TikTok, Instagram Reel, or a custom hosted video testimony.
-            </p>
+            {/* <h3 className="mt-4 text-3xl font-semibold text-black sm:text-4xl">
+              Add your Instagram customer videos here
+            </h3> */}
+            {/* <p className="mt-4 text-sm leading-7 text-black/70 sm:text-base">
+              These cards now use the official Instagram embed method. To add more, duplicate one
+              object in the videoTestimonials array and paste the normal Reel link.
+            </p> */}
           </div>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+          <div ref={instagramEmbedsRef} className="mt-8 grid gap-6 lg:grid-cols-3">
             {videoTestimonials.map((video) => (
               <div
                 key={video.title}
                 className="overflow-hidden rounded-[2rem] border border-black/10 bg-[#f7d33e] shadow-lg"
               >
-                <div className="relative aspect-[9/16] overflow-hidden bg-black">
-                  <img
-                    src={video.thumbnail}
-                    alt={video.title}
-                    className="h-full w-full object-cover opacity-75"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/20 backdrop-blur-md">
-                      <PlayCircle className="h-10 w-10 text-white" />
+                <div className="min-h-[420px] bg-white p-3 sm:min-h-[520px]">
+                  {video.permalink ? (
+                    <div className="flex h-full items-start justify-center overflow-hidden rounded-[1.5rem]">
+                      <blockquote
+                        className="instagram-media"
+                        data-instgrm-captioned
+                        data-instgrm-permalink={video.permalink}
+                        data-instgrm-version="14"
+                        style={{
+                          background: '#FFF',
+                          border: 0,
+                          borderRadius: '12px',
+                          boxShadow: '0 0 1px 0 rgba(0,0,0,0.15), 0 8px 24px 0 rgba(0,0,0,0.08)',
+                          margin: '0 auto',
+                          maxWidth: '540px',
+                          minWidth: '326px',
+                          padding: 0,
+                          width: '100%',
+                        }}
+                      >
+                        <a href={video.permalink} target="_blank" rel="noreferrer">
+                          View this post on Instagram
+                        </a>
+                      </blockquote>
                     </div>
-                  </div>
-                  <div className="absolute left-4 top-4 rounded-full bg-[#f0c419] px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-black">
-                    {video.platform}
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                    <p className="text-lg font-semibold">{video.title}</p>
-                    <p className="mt-2 text-sm leading-6 text-white/80">{video.description}</p>
-                  </div>
+                  ) : (
+                    <div className="flex h-full min-h-[380px] items-center justify-center rounded-[1.5rem] border border-dashed border-black/20 bg-black/5 px-6 text-center text-sm text-black/50">
+                      Add your Instagram Reel link inside the videoTestimonials array.
+                    </div>
+                  )}
                 </div>
                 <div className="p-5">
-                  <a
-                    href={video.href}
-                    className="inline-flex rounded-full border border-black/15 px-5 py-2.5 text-sm font-medium text-black transition hover:bg-black hover:text-[#f0c419]"
-                  >
-                    Replace with real video
-                  </a>
+                  <div className="mb-3 inline-flex rounded-full bg-black px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-[#f0c419]">
+                    {video.platform}
+                  </div>
+                  <p className="text-lg font-semibold text-black">{video.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-black/70">{video.description}</p>
                 </div>
               </div>
             ))}
@@ -767,10 +805,12 @@ export default function IvyCityGrabbaReplica() {
               </h3>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-black/65 sm:text-base">
                 When you choose IVY CITY, you are choosing a retailer that values quality,
-                authenticity, and customer trust. We are not just selling tobacco products — we are
+                authenticity, and customer trust. We are not just selling tobacco products, we are
                 sharing a tradition of excellence that begins in the fields of the Dominican
                 Republic and ends with your complete satisfaction.
               </p>
+              <h2>Our Premium Grabba Leaves are sourced directly from: 51000, Dominican Republic
+              </h2>
             </div>
 
             <div className="grid gap-8 sm:grid-cols-1">
@@ -788,11 +828,12 @@ export default function IvyCityGrabbaReplica() {
           <div className="mt-10 flex flex-col gap-4 border-t border-black/10 pt-6 text-sm text-black/55 md:flex-row md:items-center md:justify-between">
             <p>© 2026 IVY CITY GRABBA. All rights reserved.</p>
             <div className="flex flex-wrap gap-5">
-              <a href="https://instagram.com/ivycitygrabba" className="hover:opacity-65">Instagram</a>
+              <a href="https://instagram.com/ivycitygrabba" className="hover:opacity-65"><b>Instagram</b></a>
             </div>
           </div>
         </div>
       </footer>
     </div>
+    </>
   )
 }
