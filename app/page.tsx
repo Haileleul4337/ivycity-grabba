@@ -34,7 +34,7 @@ export default function IvyCityGrabbaReplica() {
           'images/product-1-hover.jpg', // replace with your own hover image URL or /images/product-1-hover.jpg
       },
       {
-        name: 'IVY CITY Grabba Bottled 5g - COMING SOON',
+        name: 'IVY CITY Grabba Bottled 5g',
         description:
           'A compact premium format for customers looking for authentic quality in a smaller bottled presentation.',
         image:
