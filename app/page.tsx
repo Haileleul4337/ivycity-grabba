@@ -4,6 +4,16 @@ import Script from 'next/script'
 import { Menu, Mail, ShieldCheck, Leaf, Star, Clock, MapPin, X } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
+declare global {
+  interface Window {
+    instgrm?: {
+      Embeds?: {
+        process: () => void
+      }
+    }
+  }
+}
+
 export default function IvyCityGrabbaReplica() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSlide, setActiveSlide] = useState(0)
@@ -169,19 +179,19 @@ export default function IvyCityGrabbaReplica() {
     {
       title: 'Instagram Reel Review',
       platform: 'Instagram',
-      // description: 'Customer review',
+      description: 'Customer review featuring product quality and freshness.',
       permalink: 'https://www.instagram.com/reel/DT039kZkvPm/',
     },
     {
       title: 'Customer Reel Review',
       platform: 'Instagram',
-      // description: 'Use this area for an Instagram Reel from a customer or creator review.',
+      description: 'Real customer feedback on smooth burn and rich flavor.',
       permalink: 'https://www.instagram.com/reel/DUqj4qIjYJI/',
     },
     {
       title: 'Product Experience Reel',
       platform: 'Instagram',
-      // description: 'Add a third social proof video here to make the page feel more trusted and active.',
+      description: 'A quick look at the full IVY CITY grabba experience.',
       permalink: 'https://www.instagram.com/reel/DT03Spwkmh6/',
     },
   ]
