@@ -830,9 +830,9 @@ export default function IvyCityGrabbaReplica() {
                   <a href="#products" className="hover:opacity-65">Products</a>
                   <a href="#about" className="hover:opacity-65">About</a>
                   <a href="#order" className="hover:opacity-65">Contact / Order</a>
-                  <Link href="/privacy-policy" className="hover:opacity-65">Privacy Policy</Link>
-                  <Link href="/terms-of-service" className="hover:opacity-65">Terms of Service</Link>
-                  <Link href="/contact" className="hover:opacity-65">Contact Page</Link>
+                  <a href="/privacy-policy" className="hover:opacity-65">Privacy Policy</a>
+                  <a href="/terms-of-service" className="hover:opacity-65">Terms of Service</a>
+                  <a href="/contact" className="hover:opacity-65">Contact Page</a>
                 </div>
               </div>
             </div>
