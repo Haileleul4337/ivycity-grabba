@@ -1,5 +1,5 @@
 "use client"
-
+import Link from 'next/link'
 import Script from 'next/script'
 import { Menu, Mail, ShieldCheck, Leaf, Star, Clock, MapPin, X } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
